@@ -13,4 +13,5 @@ public class UserEntity {
     private String userId;
     private String userName;
     private String userEmail;
+    private String password;
 }

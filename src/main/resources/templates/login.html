@@ -5,30 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-    <form id="test">
+    <form method="post" action="/login">
         <input id="userId" name="userId" type="text">
-        <input id="userName" name="userName" type="text">
-        <a href="#" onclick="login()">로그인</a>
+        <input id="userPw" name="userPw" type="text">
+        <button type="submit">로그인</button>
     </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    function login(){
-        $.ajax({
-            url : '/auth/login',
-            method: 'post',
-            data : JSON.stringify({userId : $('#userId').val(), userName : $('#userName').val()}),
-            contentType: 'application/json',
-            success : function (data, status) {
-                alert("123");
-            },
-            error : function(request, errorText, error) {
-                console.log(request);
-                console.log(errorText);
-                console.log(error);
-                alert("456");
-            }
-        });
-    }
+    // function login(){
+    //     $.ajax({
+    //         url : '/auth/login',
+    //         method: 'post',
+    //         data : JSON.stringify({userId : $('#userId').val(), userName : $('#userName').val()}),
+    //         contentType: 'application/json',
+    //         success : function (data, status) {
+    //             alert("123");
+    //         },
+    //         error : function(request, errorText, error) {
+    //             console.log(request);
+    //             console.log(errorText);
+    //             console.log(error);
+    //             alert("456");
+    //         }
+    //     });
+    // }
 
 
 </script>
