@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form id="test">
+        <input id="userId" name="userId" type="text">
+        <input id="userName" name="userName" type="text">
+        <a href="#" onclick="login()">로그인</a>
+    </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function login(){
+        $.ajax({
+            url : '/auth/login',
+            method: 'post',
+            data : JSON.stringify({userId : $('#userId').val(), userName : $('#userName').val()}),
+            contentType: 'application/json',
+            success : function (data, status) {
+                alert("123");
+            },
+            error : function(request, errorText, error) {
+                console.log(request);
+                console.log(errorText);
+                console.log(error);
+                alert("456");
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

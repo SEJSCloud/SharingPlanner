@@ -8,16 +8,19 @@ spring:
         jdbc:
           batch_size: 1000
         format_sql: true
+    hibernate:
+      ddl-auto: create
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgrespw
-    url: jdbc:postgresql://localhost:55000/planner
+    url: jdbc:postgresql://localhost:55001/postgres
   config:
     activate:
       on-profile: local
 security:
   jwt:
-    key: sharing_planner_secret_key
+    key: custom_sharing_planner_jwt_secret_key
     minutes: 60
-    domainUrl: sharing-planner.com
+  ignore:
+    url: /auth/**, /login, /signup, /
