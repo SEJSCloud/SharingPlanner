@@ -17,7 +17,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {
 
-        log.debug("error message{}", exception.getMessage());
+        log.error("error message{}", exception.getMessage());
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         setDefaultFailureUrl("/login?error=true");
         super.onAuthenticationFailure(request, response, exception);

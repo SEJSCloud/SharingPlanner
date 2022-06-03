@@ -14,4 +14,7 @@ public class UserEntity {
     private String userName;
     private String userEmail;
     private String password;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private AuthorityEntity authorityEntity;
 }

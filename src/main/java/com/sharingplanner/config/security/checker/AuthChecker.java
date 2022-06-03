@@ -6,7 +6,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.nio.file.AccessDeniedException;
 
 @Component
@@ -15,13 +14,13 @@ public class AuthChecker {
     public boolean isAuthenticated() {
         try {
             return StringUtils.hasLength(getUserDetail().getUserId());
-        }catch (AccessDeniedException ade){
-            log.error(ade.getMessage());
+        }catch (AccessDeniedException | NullPointerException npe){
+            log.error(npe.getMessage());
             return false;
         }
     }
 
-    private CustomUserDetails getUserDetail() throws AccessDeniedException {
+    private CustomUserDetails getUserDetail() throws AccessDeniedException, NullPointerException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CustomUserDetails user;
         if (principal instanceof CustomUserDetails) {

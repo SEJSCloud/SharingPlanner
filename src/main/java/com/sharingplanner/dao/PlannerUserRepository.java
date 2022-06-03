@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface PlannerUserRepository {
 
-    Optional<UserVo> findUserByUserId(String userId);
+    UserVo findUserByUserId(String userId);
 }

@@ -18,9 +18,10 @@ spring:
   config:
     activate:
       on-profile: local
+
 security:
   jwt:
     key: custom_sharing_planner_jwt_secret_key
     minutes: 60
   ignore:
-    url: /auth/**, /login, /signup, /
+    url: /auth/**, /login, /favicon.ico

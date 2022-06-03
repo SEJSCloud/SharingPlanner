@@ -8,6 +8,7 @@ import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +34,7 @@ public class UserAuthProvider implements AuthenticationProvider {
         String userId = authentication.getName();
         String password = (String) authentication.getCredentials();
 
-        UserDetails user = userDetailsService.loadUserByUsername(userId);
+        CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
         if (user == null) {
             throw new BadCredentialsException("유저가 확인 불가");
         }
@@ -46,7 +48,7 @@ public class UserAuthProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return UserAuthenticationToken.class.isAssignableFrom(authentication);
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
     
     public Authentication getAuthenticationFromJwt(final String token) {

@@ -30,6 +30,7 @@ public class CustomAuthFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } else {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.sendRedirect("/login");
         }
     }
 
