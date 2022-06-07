@@ -3,9 +3,11 @@ package com.sharingplanner.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SequenceGenerator(
-        name = "group_seq",
+        name = "group_seq_gen",
         sequenceName = "group_seq",
         allocationSize = 1)
 @Entity
@@ -14,7 +16,10 @@ import javax.persistence.*;
 public class GroupEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_seq_gen")
     private Long groupSeq;
     private String groupName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupEntity")
+    private List<UserEntity> userEntityList = new ArrayList<>();
 }

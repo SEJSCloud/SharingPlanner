@@ -3,6 +3,8 @@ package com.sharingplanner.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "planner_user", schema = "plan")
@@ -15,6 +17,9 @@ public class UserEntity {
     private String userEmail;
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private AuthorityEntity authorityEntity;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity")
+    private List<AuthorityEntity> authorityEntityList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GroupEntity groupEntity;
 }

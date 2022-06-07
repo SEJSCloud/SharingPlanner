@@ -1,12 +1,12 @@
 package com.sharingplanner.config.security.model;
 
+import com.sharingplanner.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -16,11 +16,11 @@ public class CustomUserDetails extends User {
     private String userName;
     private String userEmail;
 
-    public CustomUserDetails(UserVo userVo) {
-        super(userVo.getUserId(), userVo.getPassword(), Arrays.asList(new SimpleGrantedAuthority(userVo.getAuthority())));
-        this.userId = userVo.getUserId();
-        this.userName = userVo.getUserName();
-        this.userEmail = userVo.getUserEmail();
+    public CustomUserDetails(UserEntity userEntity, List<SimpleGrantedAuthority> authorityList) {
+        super(userEntity.getUserId(), userEntity.getPassword(), authorityList);
+        this.userId = userEntity.getUserId();
+        this.userName = userEntity.getUserName();
+        this.userEmail = userEntity.getUserEmail();
     }
 
 

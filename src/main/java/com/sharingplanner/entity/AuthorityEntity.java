@@ -4,14 +4,20 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
+@SequenceGenerator(
+        name = "authority_seq_gen",
+        sequenceName = "authority_seq",
+        allocationSize = 1)
 @Entity
 @Table(name = "authority", schema = "plan")
 @Getter
 public class AuthorityEntity {
     @Id
-    private String authId;
-    private String authName;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_seq_gen")
+    private Long authoritySeq;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "authorityEntity")
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity userEntity;
+
+    private String authCd;
 }
