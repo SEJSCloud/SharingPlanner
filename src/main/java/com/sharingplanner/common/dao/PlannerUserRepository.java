@@ -1,4 +1,4 @@
-package com.sharingplanner.dao;
+package com.sharingplanner.common.dao;
 
 public interface PlannerUserRepository {
 

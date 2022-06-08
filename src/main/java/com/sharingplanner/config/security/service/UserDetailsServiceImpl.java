@@ -1,11 +1,10 @@
 package com.sharingplanner.config.security.service;
 
-import com.sharingplanner.config.security.model.Authority;
+import com.sharingplanner.config.security.enums.Authority;
 import com.sharingplanner.config.security.model.CustomUserDetails;
-import com.sharingplanner.dao.PlannerUserRepository;
-import com.sharingplanner.dao.UserRepository;
-import com.sharingplanner.entity.AuthorityEntity;
-import com.sharingplanner.entity.UserEntity;
+import com.sharingplanner.common.dao.PlannerUserRepository;
+import com.sharingplanner.common.dao.UserRepository;
+import com.sharingplanner.common.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

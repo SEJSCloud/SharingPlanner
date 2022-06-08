@@ -1,36 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .main {
+            max-width: 330px;
+            padding: 15px;
+        }
+
+        .main .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .main input[name="userId"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .main input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    </style>
 </head>
-<body>
-    <form method="post" action="/login">
-        <input id="userId" name="userId" type="text">
-        <input id="userPw" name="userPw" type="text">
-        <button type="submit">로그인</button>
-    </form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    // function login(){
-    //     $.ajax({
-    //         url : '/auth/login',
-    //         method: 'post',
-    //         data : JSON.stringify({userId : $('#userId').val(), userName : $('#userName').val()}),
-    //         contentType: 'application/json',
-    //         success : function (data, status) {
-    //             alert("123");
-    //         },
-    //         error : function(request, errorText, error) {
-    //             console.log(request);
-    //             console.log(errorText);
-    //             console.log(error);
-    //             alert("456");
-    //         }
-    //     });
-    // }
+<body class="text-center">
+    <main class="main w-100 m-auto">
+        <form method="post" action="/login">
+<!--                        <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">-->
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
+            <div class="form-floating">
+                <input type="text" class="form-control" id="userId" name="userId" placeholder="아이디">
+                <label for="userId">아이디</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="userPw" name="userPw" placeholder="비밀번호">
+                <label for="userPw">비밀번호</label>
+            </div>
 
-</script>
+            <button class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
+            <button class="w-50 btn btn-lg btn-dark float-end" type="button" onclick="location.href = '/sign-up'">회원가입</button>
+            <p class="mt-5 mb-3 text-muted">&copy; by bootstrap 2017–2022</p>
+        </form>
+    </main>
 </body>
 </html>

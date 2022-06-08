@@ -1,4 +1,4 @@
-package com.sharingplanner.config.security.model;
+package com.sharingplanner.config.security.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

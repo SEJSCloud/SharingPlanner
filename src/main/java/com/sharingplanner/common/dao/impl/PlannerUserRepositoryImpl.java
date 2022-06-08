@@ -1,7 +1,7 @@
-package com.sharingplanner.dao.impl;
+package com.sharingplanner.common.dao.impl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sharingplanner.dao.PlannerUserRepository;
+import com.sharingplanner.common.dao.PlannerUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

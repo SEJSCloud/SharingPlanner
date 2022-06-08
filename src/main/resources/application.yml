@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgrespw
-    url: jdbc:postgresql://localhost:55002/postgres
+    url: jdbc:postgresql://localhost:55003/postgres
   config:
     activate:
       on-profile: local
@@ -24,4 +24,4 @@ security:
     key: custom_sharing_planner_jwt_secret_key
     minutes: 60
   ignore:
-    url: /auth/**, /login, /favicon.ico
+    url: /auth/**, /login, /sign-up, /favicon.ico

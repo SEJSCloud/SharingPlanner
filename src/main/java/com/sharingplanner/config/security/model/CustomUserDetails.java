@@ -1,6 +1,6 @@
 package com.sharingplanner.config.security.model;
 
-import com.sharingplanner.entity.UserEntity;
+import com.sharingplanner.common.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

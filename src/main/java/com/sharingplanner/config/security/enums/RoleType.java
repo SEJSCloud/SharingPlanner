@@ -10,7 +10,7 @@ public enum RoleType {
     GROUP("02", "그룹관리자"),
     USER("03", "일반유저");
 
-    private String type;
-    private String name;
+    private final String type;
+    private final String name;
 
 }

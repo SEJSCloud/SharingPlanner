@@ -14,4 +14,9 @@ public class ViewController {
     public String index() {
         return "/index";
     }
+
+    @RequestMapping("/sign-up")
+    public String signUp() {
+        return "/signUp";
+    }
 }

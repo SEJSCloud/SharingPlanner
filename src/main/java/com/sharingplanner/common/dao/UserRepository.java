@@ -1,6 +1,6 @@
-package com.sharingplanner.dao;
+package com.sharingplanner.common.dao;
 
-import com.sharingplanner.entity.UserEntity;
+import com.sharingplanner.common.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

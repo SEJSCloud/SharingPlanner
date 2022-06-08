@@ -1,4 +1,4 @@
-package com.sharingplanner.entity;
+package com.sharingplanner.common.entity;
 
 import lombok.Getter;
 
@@ -9,6 +9,7 @@ import java.util.List;
 @SequenceGenerator(
         name = "group_seq_gen",
         sequenceName = "group_seq",
+        schema = "plan",
         allocationSize = 1)
 @Entity
 @Table(name = "group", schema = "plan")
