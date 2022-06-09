@@ -1,6 +1,6 @@
 package com.sharingplanner.config.security.utils;
 
-import com.sharingplanner.config.exception.JWTOmissionException;
+import com.sharingplanner.common.exception.JWTOmissionException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;

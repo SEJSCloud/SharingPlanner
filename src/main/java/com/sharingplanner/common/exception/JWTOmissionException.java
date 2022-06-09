@@ -1,4 +1,4 @@
-package com.sharingplanner.config.exception;
+package com.sharingplanner.common.exception;
 
 public class JWTOmissionException extends RuntimeException {
     private static final long serialVersionUID = 1L;

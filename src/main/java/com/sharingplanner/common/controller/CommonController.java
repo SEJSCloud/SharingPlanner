@@ -1,5 +1,6 @@
 package com.sharingplanner.common.controller;
 
+import com.sharingplanner.common.exception.CustomException;
 import com.sharingplanner.common.model.UserRequest;
 import com.sharingplanner.common.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,12 +17,14 @@ public class CommonController {
     private final UserService userService;
 
     @PostMapping("/sign-up")
-    public void signUp(HttpServletResponse response, UserRequest userRequest) throws IOException {
+    public String signUp(@Valid UserRequest userRequest) throws CustomException {
         try {
             userService.signUp(userRequest);
-            response.sendRedirect("/login");
         }catch (Exception e){
-            response.sendRedirect("/error");
+            log.error(e.getMessage());
+            throw new CustomException("회원가입에 실패하였습니다.");
         }
+
+        return "/login";
     }
 }

@@ -1,5 +1,6 @@
 package com.sharingplanner.config.security;
 
+import com.sharingplanner.config.security.checker.AuthChecker;
 import com.sharingplanner.config.security.enums.RoleType;
 import com.sharingplanner.config.security.filter.CustomAuthFilter;
 import com.sharingplanner.config.security.handler.LoginFailureHandler;
@@ -7,10 +8,13 @@ import com.sharingplanner.config.security.handler.LoginSuccessHandler;
 import com.sharingplanner.config.security.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -23,10 +27,13 @@ public class SecurityConfig {
     private String[] ignored;
 
     @Autowired
-    LoginSuccessHandler loginSuccessHandler;
+    private LoginSuccessHandler loginSuccessHandler;
 
     @Autowired
-    LoginFailureHandler loginFailureHandler;
+    private LoginFailureHandler loginFailureHandler;
+
+    @Autowired
+    private AuthChecker authChecker;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -44,20 +51,20 @@ public class SecurityConfig {
                     .authorizeRequests().antMatchers("/admin/**").hasAuthority(RoleType.ADMIN.getType())
                     .anyRequest().authenticated()
                 .and()
-                    .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                    .addFilterBefore(new CustomAuthFilter(authChecker, ignored), UsernamePasswordAuthenticationFilter.class);
         http.csrf().disable();
 //        http.cors().configurationSource();
         return http.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public WebSecurityCustomizer ignoringCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     @Bean
-    public CustomAuthFilter authenticationFilter() {
-        return new CustomAuthFilter(ignored);
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

@@ -16,11 +16,11 @@ import java.util.List;
 
 @Slf4j
 public class CustomAuthFilter extends OncePerRequestFilter {
-    public CustomAuthFilter(String[] ignoreUrls) {
+    public CustomAuthFilter(AuthChecker authChecker, String[] ignoreUrls) {
+        this.authChecker = authChecker;
         this.ignoreUrls = Arrays.asList(ignoreUrls.clone());
     }
-    @Autowired
-    private AuthChecker authChecker;
+    private final AuthChecker authChecker;
     private final List<String> ignoreUrls;
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 

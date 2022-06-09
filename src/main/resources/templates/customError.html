@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="common/top :: mainHead"> </head>
-
-<body>
-    <main class="main w-100 m-auto">
-
-    </main>
+<head th:replace="common/top :: mainHead"></head>
+<body class="text-center">
+  <script type="text/javascript">
+    alert("[[${message}]]");
+    history.back();
+  </script>
 </body>
-
-
 </html>

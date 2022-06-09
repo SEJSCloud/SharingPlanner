@@ -21,7 +21,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void signUp(UserRequest userRequest){
+    public void signUp(UserRequest userRequest) {
         UserEntity userEntity = userRepository.save(
                 new UserEntity(
                         userRequest.getUserId(),
