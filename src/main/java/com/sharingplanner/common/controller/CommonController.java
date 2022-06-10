@@ -20,11 +20,13 @@ public class CommonController {
     public String signUp(@Valid UserRequest userRequest) throws CustomException {
         try {
             userService.signUp(userRequest);
-        }catch (Exception e){
+        } catch (CustomException e){
+            throw e;
+        } catch (Exception e){
             log.error(e.getMessage());
             throw new CustomException("회원가입에 실패하였습니다.");
         }
 
-        return "/login";
+        return "redirect:/login";
     }
 }

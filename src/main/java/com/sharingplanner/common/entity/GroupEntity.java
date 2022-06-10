@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "group", schema = "plan")
 @Getter
-public class GroupEntity {
+public class GroupEntity extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_seq_gen")

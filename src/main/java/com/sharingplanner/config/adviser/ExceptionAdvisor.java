@@ -25,7 +25,7 @@ public class ExceptionAdvisor {
     private ModelAndView handleDefaultError(Exception exception, String message){
         ModelAndView mav = new ModelAndView();
         mav.addObject("message", message);
-        mav.setViewName("customError");
+        mav.setViewName("redirect:customError");
 
         log.error(exception.getMessage());
         return mav;

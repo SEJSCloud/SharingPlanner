@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "planner_user", schema = "plan")
 @NoArgsConstructor
 @Getter
-public class UserEntity {
+public class UserEntity extends BaseEntity{
 
     @Id
     private String userId;
